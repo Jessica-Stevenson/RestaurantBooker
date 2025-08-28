@@ -12,8 +12,8 @@ using RestaurantBooker.Models;
 namespace RestaurantBooker.Migrations
 {
     [DbContext(typeof(UserDBContext))]
-    [Migration("20250828224006_AddUserDiscriminatorFix")]
-    partial class AddUserDiscriminatorFix
+    [Migration("20250828231051_AddIdentityTables")]
+    partial class AddIdentityTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -183,11 +183,13 @@ namespace RestaurantBooker.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
