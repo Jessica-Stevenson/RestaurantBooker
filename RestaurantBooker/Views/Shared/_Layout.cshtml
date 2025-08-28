@@ -40,6 +40,36 @@
 
                         <ul class="navbar-nav ms-auto">
 
+                            <ul class="navbar-nav ms-auto">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="nav-item">
+                                        <span class="nav-link text-dark">Hello @User.Identity.Name!</span>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home")" method="post" class="form-inline">
+                                            <button type="submit" class="btn btn-danger">Logout</button>
+                                        </form>
+                                    </li>
+
+                                    @* <li class="nav-item">
+                                        <form method="post" asp-area="Identity" asp-controller="" asp-action="/Account/Logout">
+                                            <button type="submit" class="btn btn-danger">Logout</button>
+                                        </form>
+                                    </li> *@
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a class="btn btn-primary me-2" asp-area="Identity" asp-controller="" asp-action="/Account/Login">Login</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="btn btn-success" asp-area="Identity" asp-controller="" asp-action="/Account/Register">Register</a>
+                                    </li>
+                                }
+                            </ul>
+
                             <li class="nav-item">
                                 <a class="nav-link me-2" asp-area="Identity" asp-page="/Account/Login">Login</a>
                             </li>
@@ -47,6 +77,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
                             </li>
+
 
                         </ul>
 
