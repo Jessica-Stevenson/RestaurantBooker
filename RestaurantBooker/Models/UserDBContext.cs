@@ -9,6 +9,5 @@ namespace RestaurantBooker.Models
             : base(options)
         { }
 
-        public DbSet<User> Users { get; set; }
     }
 }
