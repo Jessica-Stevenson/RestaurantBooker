@@ -9,7 +9,7 @@
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #FA6A6A;
 }
 
 html {
@@ -44,4 +44,23 @@ body {
     border-radius: 20px; /* 圆角 */
     display: inline-block; /* 让背景只包裹文字 */
     font-weight: bold; /* 粗体 */
+}
+
+/*This is for the navbar and footer (Replace stuff that says Bg-White to get our signature red/pink)*/
+.custom-colour {
+    background-color: #FA6A6A;
+    color: #FFFFFF;
+}
+
+.custom-colour,
+.custom-colour .nav-link,
+.custom-colour .navbar-brand,
+.custom-colour .navbar-text {
+    color: #FFFFFF;
+}
+
+.custom-colour .nav-link:hover,
+.custom-colour .nav-link:focus,
+.custom-colour .navbar-brand:hover {
+    color: #f1f1f1;
 }

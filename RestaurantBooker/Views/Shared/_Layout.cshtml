@@ -10,7 +10,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm custom-colour border-bottom box-shadow mb-3" ">
             <div class="container-fluid">
 
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RestaurantBooker</a>
@@ -23,29 +23,29 @@
                     <ul class="navbar-nav flex-grow-1">
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Reservation" asp-action="Index">Reservation</a>
+                            <a class="nav-link" asp-area="" asp-controller="Reservation" asp-action="Index">Reservation</a>
                         </li>
                         
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
+                            <a class="nav-link" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
                         </li>
 
                         <ul class="navbar-nav ms-auto">
 
                             <li class="nav-item">
-                                <a class="btn btn-primary me-2" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                                <a class="nav-link me-2" asp-area="Identity" asp-page="/Account/Login">Login</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                                <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
                             </li>
 
                         </ul>
@@ -62,7 +62,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="custom-colour border-top footer">
 
         <div class="container">
             &copy; 2025 - RestaurantBooker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
