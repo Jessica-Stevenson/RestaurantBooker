@@ -1,5 +1,53 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model RestaurantBooker.Models.Reservation
 @{
+    ViewData["Title"] = "Reserve your table";
+}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Reserve your table</h2>
+    <form asp-action="Create" class="row">
+        <div class="col-md-6">
+            <div class="form-group mb-3">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Phone"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Date"></label>
+                <input asp-for="Date" class="form-control" type="date" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group mb-3">
+                <label asp-for="Time"></label>
+                <input asp-for="Time" class="form-control" type="time" />
+                <span asp-validation-for="Time" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="NumberOfGuests"></label>
+                <input asp-for="NumberOfGuests" class="form-control" />
+                <span asp-validation-for="NumberOfGuests" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="SpecialRequests"></label>
+                <textarea asp-for="SpecialRequests" class="form-control" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-danger w-100 mt-2">Book A Table</button>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
