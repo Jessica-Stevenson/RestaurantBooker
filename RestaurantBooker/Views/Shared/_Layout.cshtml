@@ -1,41 +1,33 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<header class="bg-danger text-white p-3">
-    <div class="container">
-        <h1>RestaurantBooker</h1>
-        <nav>
-            <ul class="nav">
-                <li class="nav-item"><a class="nav-link text-white" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li class="nav-item"><a class="nav-link text-white" asp-controller="Reservation" asp-action="Create">Reservation</a></li>
-                <li class="nav-item"><a class="nav-link text-white" asp-controller="Menu" asp-action="Index">Menu</a></li>
-                <li class="nav-item"><a class="nav-link text-white" asp-controller="Account" asp-action="Login">Login</a></li>
-                <li class="nav-item"><a class="nav-link text-white" asp-controller="Account" asp-action="Register">Register</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - RestaurantBooker</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/RestaurantBooker.styles.css" asp-append-version="true" />
+</head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg" style="background-color: #FF5151;">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RestaurantBooker</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                <a class="navbar-brand text-white me-4" href="/">RestaurantBooker</a>
+                <div class="collapse navbar-collapse">
+                    <ul class="navbar-nav flex-row">
+                        <li class="nav-item"><a class="nav-link text-white" href="/">Home</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="/">Privacy</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="/Reservation/Create">Reservation</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="/Menu">Menu</a></li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link text-white" href="/Login">Login</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="/Register">Register</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -43,7 +35,7 @@
         </main>
     </div>
 
-    <footer class="bg-danger text-white text-center p-2 mt-5">
+    <footer class="text-center text-white py-3" style="background-color: #FF5151">
         <div class="container">
             &copy; 2025 - RestaurantBooker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
