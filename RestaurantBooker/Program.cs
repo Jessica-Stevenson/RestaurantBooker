@@ -14,6 +14,8 @@ builder.Services.AddDbContext<UserDBContext>(options =>
 builder.Services.AddDefaultIdentity<User>(options =>
     options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<UserDBContext>();
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // MVC + Razor Pages
 builder.Services.AddControllersWithViews();
