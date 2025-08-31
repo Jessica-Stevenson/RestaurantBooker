@@ -31,7 +31,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Reservation" asp-action="Index">Reservation</a>
+                            <a class="nav-link" asp-area="" asp-controller="Reservation" asp-action="Create">Reservation</a>
                         </li>
                         
                         <li class="nav-item">
@@ -53,11 +53,6 @@
                                         </form>
                                     </li>
 
-                                    @* <li class="nav-item">
-                                        <form method="post" asp-area="Identity" asp-controller="" asp-action="/Account/Logout">
-                                            <button type="submit" class="btn btn-danger">Logout</button>
-                                        </form>
-                                    </li> *@
                                 }
                                 else
                                 {
@@ -71,34 +66,27 @@
                                 }
                             </ul>
 
-                          @*   <li class="nav-item">
-                                <a class="nav-link me-2" asp-area="Identity" asp-page="/Account/Login">Login</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
-                            </li> *@
 
 
                         </ul>
-
 
                     </ul>
                 </div>
             </div>
         </nav>
+
     </header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
     <footer class="custom-colour border-top footer">
 
         <div class="container">
             &copy; 2025 - RestaurantBooker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
+
 
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
