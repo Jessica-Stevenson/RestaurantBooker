@@ -16,6 +16,8 @@ namespace RestaurantBooker.Models
         [Required, EmailAddress]
         public string Email { get; set; }
 
+        public int TableId { get; set; }
+
         [Required, DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
@@ -29,5 +31,8 @@ namespace RestaurantBooker.Models
         public int NumberOfGuests { get; set; }
 
         public string SpecialRequests { get; set; }
+
+        public Table Table { get; set; }
+
     }
 }
