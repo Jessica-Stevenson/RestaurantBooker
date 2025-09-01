@@ -34,16 +34,16 @@ namespace RestaurantBooker.Controllers
             }
 
             // Check for double booking
-            bool isDoubleBooked = _context.Reservations.Any(r =>
-                r.StartTime == reservation.StartTime &&
-                r.EndTime == reservation.EndTime &&
-                r.RoomId == reservation.RoomId);
+            //bool isDoubleBooked = _context.Reservations.Any(r =>
+            //    r.StartTime == reservation.StartTime &&
+            //    r.EndTime == reservation.EndTime &&
+            //    r.RoomId == reservation.RoomId);
 
-            if (isDoubleBooked)
-            {
-                ModelState.AddModelError("", "There's already a reservation at this time.");
-                return View(reservation);
-            }
+            //if (isDoubleBooked)
+            //{
+            //    ModelState.AddModelError("", "There's already a reservation at this time.");
+            //    return View(reservation);
+            //}
 
             // Proceed if everything is valid
             if (ModelState.IsValid)
