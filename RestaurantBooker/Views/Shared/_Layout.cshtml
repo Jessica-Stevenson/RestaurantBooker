@@ -10,7 +10,8 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm custom-colour border-bottom box-shadow mb-3" ">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm custom-colour box-shadow mb-3 fixed-top" ">
+
             <div class="container-fluid">
 
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RestaurantBooker</a>
@@ -33,10 +34,9 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Reservation" asp-action="Create">Reservation</a>
                         </li>
-                        
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
-                        </li>
+                        </li>-->
 
                         <ul class="navbar-nav ms-auto">
 
@@ -76,11 +76,12 @@
         </nav>
 
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
     <footer class="custom-colour border-top footer">
 
         <div class="container">
