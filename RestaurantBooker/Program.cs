@@ -4,8 +4,8 @@ using RestaurantBooker.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("UserDbContext")
-    ?? throw new InvalidOperationException("Connection string 'UserDbContext' not found.");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'UserDBContext' not found.");
 
 builder.Services.AddDbContext<UserDBContext>(options =>
     options.UseSqlServer(connectionString));
@@ -14,6 +14,8 @@ builder.Services.AddDbContext<UserDBContext>(options =>
 builder.Services.AddDefaultIdentity<User>(options =>
     options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<UserDBContext>();
+builder.Services.AddDbContext<UserDBContext>(options =>
+    options.UseSqlServer(connectionString));
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
