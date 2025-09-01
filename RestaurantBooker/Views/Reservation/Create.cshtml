@@ -52,7 +52,7 @@
 
         <span id="guestError" style="color: red; font-size: 0.85rem; display: block; margin-top: 4px;"></span>
 
-        <script>
+        <script> // Guest limit check
             function validateGuestCount(input) {
               const errorSpan = document.getElementById('guestError');
               const value = parseInt(input.value);
@@ -63,6 +63,27 @@
                 errorSpan.textContent = "";
               }
             }
+        </script>
+        <script>
+            async function checkDoubleBooking(tableId, startTime, endTime) {
+              const errorSpan = document.getElementById('guestError'); // You can create a separate span if needed
+              const response = await fetch(`/Reservation/CheckAvailability?tableId=${tableId}&startTime=${startTime}&endTime=${endTime}`);
+              const isAvailable = await response.json();
+
+              if (!isAvailable) {
+                errorSpan.textContent = "This table is already booked at that time.";
+              } else {
+                errorSpan.textContent = "";
+              }
+            }
+
+            // Example trigger: run this when user selects a time or table
+            document.getElementById('startTimeInput').addEventListener('change', function () {
+              const tableId = document.getElementById('tableSelect').value;
+              const startTime = this.value;
+              const endTime = calculateEndTime(startTime); // You can define this based on your logic
+              checkDoubleBooking(tableId, startTime, endTime);
+            });
         </script>
 
 
