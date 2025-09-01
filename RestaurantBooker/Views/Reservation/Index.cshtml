@@ -1,1 +1,67 @@
-﻿
+﻿@model IEnumerable<RestaurantBooker.Models.Reservation>
+
+<table class="table">
+
+    <h1>Reservation</h1>
+
+    <p>
+        <a asp-controller="Reservation" asp-action="Create" class="btn btn-primary">New Booking</a>
+    </p>
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>NumberOfGuests</th>
+            <th>SpecialRequests</th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Phone</td>
+				<td>@item.Email</td>
+				<td>@item.Date.ToShortDateString()</td>
+				<td>@item.Time.ToString(@"hh\:mm")</td>
+                <td>@item.NumberOfGuests</td>
+				<td>@item.SpecialRequests</td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Email</td>
+                    <td>@item.Date.ToShortDateString()</td>
+                    <td>@item.Time.ToString(@"hh\:mm")</td>
+                    <td>@item.NumberOfGuests</td>
+                    <td>@item.SpecialRequests</td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" class="text-center">No reservations found.</td>
+            </tr>
+        }
+    </tbody>
+</table>

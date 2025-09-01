@@ -7,7 +7,10 @@ namespace RestaurantBooker.Models
     {
         public UserDBContext(DbContextOptions<UserDBContext> options)
             : base(options)
-        { }
+        {
 
+        }
+
+        public DbSet<Reservation> Reservations { get; set; }
     }
 }
