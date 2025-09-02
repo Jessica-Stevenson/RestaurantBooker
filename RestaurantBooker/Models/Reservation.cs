@@ -27,7 +27,7 @@ namespace RestaurantBooker.Models
         public DateTime EndTime { get; set; }
         public int RoomId { get; set; }
 
-        [Required, Range(1, 20)]
+        [Required, Range(1, 12)]
         public int NumberOfGuests { get; set; }
 
         public string SpecialRequests { get; set; }

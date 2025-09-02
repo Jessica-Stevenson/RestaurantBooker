@@ -14,7 +14,7 @@ namespace RestaurantBooker.Controllers
             _context = context;
         }
 
-    // Your action methods...
+        // Your action methods...
 
         // GET: /Reservation/Create
         public IActionResult Create()
@@ -46,7 +46,7 @@ namespace RestaurantBooker.Controllers
             }
 
             //Proceed if everything is valid
-            if (ModelState.IsValid)
+            else if (ModelState.IsValid)
             {
                 _context.Reservations.Add(reservation);
                 _context.SaveChanges();
@@ -58,6 +58,7 @@ namespace RestaurantBooker.Controllers
 
         public IActionResult SelectTable()
         {
+            // Need some form of if statement checking to see if form is filled out/completed
             var tables = _context.Tables.ToList();
             return View(tables);
         }
