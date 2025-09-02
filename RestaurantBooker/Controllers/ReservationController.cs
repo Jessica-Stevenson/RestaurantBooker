@@ -9,11 +9,8 @@ namespace RestaurantBooker.Controllers
 
         private readonly ApplicationDbContext _context;
 
+
         public ReservationController(ApplicationDbContext context)
-
-        private readonly UserDBContext _context;
-
-        public ReservationController(UserDBContext context)
         {
             _context = context;
         }
