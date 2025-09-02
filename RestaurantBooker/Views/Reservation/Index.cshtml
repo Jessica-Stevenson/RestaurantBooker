@@ -1,12 +1,16 @@
 ﻿@model IEnumerable<RestaurantBooker.Models.Reservation>
 
-<table class="table">
+<table class="reservation-table table">
 
-    <h1>Reservation</h1>
+    <h1 class="custom-title me-2 mb-10">Reservation Table</h1>
 
-    <p>
-        <a asp-controller="Reservation" asp-action="Create" class="btn btn-primary">New Booking</a>
+    <br />
+    <br />
+
+    <p class="me-2">
+        <a asp-controller="Reservation" asp-action="Create" class="custom-btn mb-5">New Booking</a>
     </p>
+
 
     <thead>
         <tr>

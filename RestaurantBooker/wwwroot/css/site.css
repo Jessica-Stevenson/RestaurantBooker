@@ -28,28 +28,29 @@ nav {
 }
 
 .custom-btn {
-    background-color: #FA6A6A; /* 橙色 */
+    background-color: #FA6A6A; /* color */
     color: white;
-    font-size: 20px; /* 文字大一点 */
-    padding: 12px 20%; /* 上下、左右内边距 */
-    border-radius: 10px; /* 圆角 */
+    font-size: 20px; /* front side */
+    padding: 12px 20%; /* up down、left right */
+    border-radius: 10px; /* round */
     font-weight: bold;
     font: inter;
     outline: none;
-    box-shadow: 0 0 8px #ff99aa; /* 粉色光晕 */
+    box-shadow: 0 0 8px #ff99aa; /* outline */
 }
 
     .custom-btn:hover {
-        background-color: #E35858; /* hover 时稍微深一点 */
+        background-color: #FF4343; /* hover darker */
+        color: white;
     }
 
 .custom-title {
-    background-color: #f8b4b4; /* 粉色背景 */
-    color: white; /* 文字白色 */
-    padding: 10px 20px;/* 内边距让块更大 */
-    border-radius: 10px; /* 圆角 */
-    display: inline-block; /* 让背景只包裹文字 */
-    font-weight: bold; /* 粗体 */
+    background-color: #f8b4b4; /* background */
+    color: white; /* front color */
+    padding: 10px 20px;/* padding side */
+    border-radius: 10px; /* radius */
+    display: inline-block; /* let the front inside background */
+    font-weight: bold; /* blod font */
     width:100%;
     font-size:30px;
 }
@@ -100,3 +101,24 @@ nav {
     scrollbar-width: thin;
     scrollbar-color: #FA6A6A #f1f1f1; /* thumb | track */
 }
+
+
+/*table color-profile change*/
+.reservation-table {
+    background-color: #f9f9ff; /* table back background */
+    border: 2px solid #FF5C5C; /* outline  */
+}
+
+    .reservation-table th {
+        background-color: #DD7777; /* title */
+        color: white;
+    }
+
+    .reservation-table td {
+        background-color: #E9A8A8; /* table background */
+        color: #333;
+    }
+
+    /*.reservation-table tr:hover td {
+        background-color: #FF4343;*/ /* change color when mouse on it */
+    /*}*/
