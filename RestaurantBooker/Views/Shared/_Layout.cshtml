@@ -32,11 +32,12 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Reservation" asp-action="Create">Reservation</a>
+                            <a class="nav-link" asp-area="" asp-controller="Reservation" asp-action="Index">Reservation</a>
                         </li>
-                        <!--<li class="nav-item">
+
+                        <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
-                        </li>-->
+                        </li>
 
                         <ul class="navbar-nav ms-auto">
 
@@ -94,5 +95,8 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
 </body>
 </html>
