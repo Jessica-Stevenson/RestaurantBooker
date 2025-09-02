@@ -91,9 +91,9 @@ nav {
     border: 2px solid #f1f1f1;
 }
 
-    ::-webkit-scrollbar-thumb:hover {
-        background-color: #e25555;
-    }
+::-webkit-scrollbar-thumb:hover {
+    background-color: #e25555;
+}
 
 /* Firefox */
 * {
