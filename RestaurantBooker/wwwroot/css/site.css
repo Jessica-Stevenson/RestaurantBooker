@@ -1,5 +1,6 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    /*background-color: #FA6A6A;*/
 }
 
 @media (min-width: 768px) {
@@ -9,7 +10,7 @@ html {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #FA6A6A;
 }
 
 html {
@@ -18,5 +19,113 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    padding-top: 70px;
 }
+
+nav {
+    z-index: 9999999;
+}
+
+.letter-Front {
+    font-weight: bold;
+    font: inter;
+    outline: none;
+    color: black;
+}
+
+.custom-btn {
+    background-color: #FA6A6A; /* color */
+    color: white;
+    font-size: 20px; /* front side */
+    padding: 12px 20%; /* up down、left right */
+    border-radius: 10px; /* round */
+    font-weight: bold;
+    font: inter;
+    outline: none;
+    box-shadow: 0 0 8px #ff99aa; /* outline */
+}
+
+    .custom-btn:hover {
+        background-color: #FF4343; /* hover darker */
+        color: white;
+    }
+
+.custom-title {
+    background-color: #f8b4b4; /* background */
+    color: white; /* front color */
+    padding: 10px 20px;/* padding side */
+    border-radius: 10px; /* radius */
+    display: inline-block; /* let the front inside background */
+    font-weight: bold; /* blod font */
+    width:100%;
+    font-size:30px;
+}
+
+/*This is for the navbar and footer (Replace stuff that says Bg-White to get our signature red/pink)*/
+.custom-colour {
+    background-color: #FA6A6A;
+    color: #FFFFFF;
+}
+
+.custom-colour,
+.custom-colour .nav-link,
+.custom-colour .navbar-brand,
+.custom-colour .navbar-text {
+    color: #FFFFFF;
+}
+
+.custom-colour .nav-link:hover,
+.custom-colour .nav-link:focus,
+.custom-colour .navbar-brand:hover {
+    color: #f1f1f1;
+}
+
+/* ===== GLOBAL SCROLLBAR IN BRAND COLOR ===== */
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Track background */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #FA6A6A; /* Brand color */
+    border-radius: 10px;
+    border: 2px solid #f1f1f1; /* Padding around thumb */
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #e25555; /* Darker shade on hover */
+    }
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #FA6A6A #f1f1f1; /* thumb | track */
+}
+
+
+/*table color-profile change*/
+.reservation-table {
+    background-color: #DD7777; /* table back background */
+    border: 2px solid #FF5C5C; /* outline  */
+}
+
+    .reservation-table th {
+        background-color: #DD7777; /* title */
+        color: white;
+    }
+
+    .reservation-table td {
+        background-color: #E9A8A8; /* table background */
+        color: #333;
+    }
+
+    /*.reservation-table tr:hover td {
+        background-color: #FF4343;*/ /* change color when mouse on it */
+    /*}*/
