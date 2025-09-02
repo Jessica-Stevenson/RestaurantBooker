@@ -39,9 +39,9 @@ nav {
     box-shadow: 0 0 8px #ff99aa; /* 粉色光晕 */
 }
 
-    .custom-btn:hover {
-        background-color: #E35858; /* hover 时稍微深一点 */
-    }
+.custom-btn:hover {
+    background-color: #E35858; /* hover 时稍微深一点 */
+}
 
 .custom-title {
     background-color: #f8b4b4; /* 粉色背景 */
