@@ -7,19 +7,43 @@ namespace RestaurantBooker.Controllers
 
     public class ReservationController : Controller
     {
+
+
+//Vison
+        private readonly UserDBContext _context;
+
+        public ReservationController(UserDBContext context)
+=======
         private readonly ApplicationDbContext _context;
 
         public ReservationController(ApplicationDbContext context)
+//Tegan
         {
             _context = context;
         }
 
+//Vison
+        public async Task<IActionResult> Index()
+        {
+            // enusre it enter List，not null
+            var reservations = await _context.Reservations.ToListAsync();
+            return View(reservations);
+        }
+=======
         // Your action methods...
+//Tegan
 
         // GET: /Reservation/Create
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
+        }
+
+        // GET: /Reservation/Edit/5
+        [HttpGet]
+        public IActionResult Edit(int Id) {
+            return View(Edit);
         }
 
         // POST: /Reservation/Create
@@ -48,9 +72,14 @@ namespace RestaurantBooker.Controllers
             //Proceed if everything is valid
             else if (ModelState.IsValid)
             {
+//Vison
+                // Save reservation logic here (e.g., to a database)
+                return RedirectToAction("Index", "Reservation");
+=======
                 _context.Reservations.Add(reservation);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
+//Tegan
             }
 
             return View(reservation);
