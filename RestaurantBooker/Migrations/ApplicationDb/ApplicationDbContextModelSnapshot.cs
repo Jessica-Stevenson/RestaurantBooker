@@ -297,6 +297,9 @@ namespace RestaurantBooker.Migrations.ApplicationDb
                     b.Property<int>("Capacity")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

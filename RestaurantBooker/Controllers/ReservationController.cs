@@ -55,5 +55,11 @@ namespace RestaurantBooker.Controllers
 
             return View(reservation);
         }
+
+        public IActionResult SelectTable()
+        {
+            var tables = _context.Tables.ToList();
+            return View(tables);
+        }
     }
 }
