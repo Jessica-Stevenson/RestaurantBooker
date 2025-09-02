@@ -12,6 +12,7 @@ namespace RestaurantBooker.Models
         [Required]
         [MaxLength(50)]
         public string LastName { get; set; }
+
     }
 
 }
