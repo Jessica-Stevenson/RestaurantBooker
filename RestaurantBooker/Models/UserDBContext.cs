@@ -8,13 +8,10 @@ namespace RestaurantBooker.Models
         public UserDBContext(DbContextOptions<UserDBContext> options): base(options)
         {
 
-//Vison
+
         }
 
         public DbSet<Reservation> Reservations { get; set; }
-=======
-        public DbSet<Reservation> Reservations { get; set; }
 
-//Tegan
     }
 }

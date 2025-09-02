@@ -10,10 +10,6 @@ namespace RestaurantBooker.Controllers
 
 
 //Vison
-        private readonly UserDBContext _context;
-
-        public ReservationController(UserDBContext context)
-=======
         private readonly ApplicationDbContext _context;
 
         public ReservationController(ApplicationDbContext context)
@@ -29,7 +25,7 @@ namespace RestaurantBooker.Controllers
             var reservations = await _context.Reservations.ToListAsync();
             return View(reservations);
         }
-=======
+
         // Your action methods...
 //Tegan
 
@@ -75,7 +71,7 @@ namespace RestaurantBooker.Controllers
 //Vison
                 // Save reservation logic here (e.g., to a database)
                 return RedirectToAction("Index", "Reservation");
-=======
+
                 _context.Reservations.Add(reservation);
                 _context.SaveChanges();
                 return RedirectToAction("Index");
