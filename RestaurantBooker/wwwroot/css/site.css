@@ -27,6 +27,13 @@ nav {
     z-index: 9999999;
 }
 
+.letter-Front {
+    font-weight: bold;
+    font: inter;
+    outline: none;
+    color: black;
+}
+
 .custom-btn {
     background-color: #FA6A6A; /* color */
     color: white;

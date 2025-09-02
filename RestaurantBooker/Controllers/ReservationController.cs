@@ -22,9 +22,16 @@ namespace RestaurantBooker.Controllers
         }
 
         // GET: /Reservation/Create
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
+        }
+
+        // GET: /Reservation/Edit/5
+        [HttpGet]
+        public IActionResult Edit(int Id) {
+            return View(Edit);
         }
 
         // POST: /Reservation/Create
