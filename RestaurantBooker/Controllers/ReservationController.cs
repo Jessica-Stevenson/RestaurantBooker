@@ -7,6 +7,10 @@ namespace RestaurantBooker.Controllers
     public class ReservationController : Controller
     {
 
+        private readonly ApplicationDbContext _context;
+
+        public ReservationController(ApplicationDbContext context)
+
         private readonly UserDBContext _context;
 
         public ReservationController(UserDBContext context)
@@ -20,6 +24,8 @@ namespace RestaurantBooker.Controllers
             var reservations = await _context.Reservations.ToListAsync();
             return View(reservations);
         }
+        // Your action methods...
+
 
         // GET: /Reservation/Create
         [HttpGet]
@@ -69,7 +75,13 @@ namespace RestaurantBooker.Controllers
 
             try
             {
+                // Save reservation logic here (e.g., to a database)
+                return RedirectToAction("Index", "Reservation");
+
+                _context.Reservations.Add(reservation);
+                
                 _context.Reservations.Remove(reservation);
+                
                 _context.SaveChanges();
             }
             catch (DbUpdateException)
