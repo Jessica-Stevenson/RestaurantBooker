@@ -174,6 +174,9 @@ namespace RestaurantBooker.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("EndTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -185,11 +188,17 @@ namespace RestaurantBooker.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
                     b.Property<string>("SpecialRequests")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TableId")
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("TableId")
                         .HasColumnType("int");
 
                     b.Property<TimeSpan>("Time")
@@ -353,9 +362,13 @@ namespace RestaurantBooker.Migrations
 
             modelBuilder.Entity("RestaurantBooker.Models.Reservation", b =>
                 {
-                    b.HasOne("Table", null)
+                    b.HasOne("Table", "Table")
                         .WithMany("Reservations")
-                        .HasForeignKey("TableId");
+                        .HasForeignKey("TableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Table");
                 });
 
             modelBuilder.Entity("Table", b =>

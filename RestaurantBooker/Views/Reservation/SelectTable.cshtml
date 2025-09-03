@@ -25,7 +25,7 @@
 <input type="hidden" id="selectedTableId" name="TableId" />
 
 <!-- Reservation Button -->
-<form method="post" action="/Reservation/Create">
+<form method="post" asp-action="Create" asp-controller="Reservation">
     <input type="hidden" name="TableId" id="formTableId" />
     <button type="submit" class="btn btn-danger">Create Reservation</button>
 </form>

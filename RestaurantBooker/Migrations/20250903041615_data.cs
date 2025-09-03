@@ -182,11 +182,14 @@ namespace RestaurantBooker.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TableId = table.Column<int>(type: "int", nullable: false),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Time = table.Column<TimeSpan>(type: "time", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RoomId = table.Column<int>(type: "int", nullable: false),
                     NumberOfGuests = table.Column<int>(type: "int", nullable: false),
-                    SpecialRequests = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TableId = table.Column<int>(type: "int", nullable: true)
+                    SpecialRequests = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -195,7 +198,8 @@ namespace RestaurantBooker.Migrations
                         name: "FK_Reservations_Tables_TableId",
                         column: x => x.TableId,
                         principalTable: "Tables",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
