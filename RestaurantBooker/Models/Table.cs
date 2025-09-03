@@ -8,5 +8,6 @@ public class Table
 
     public bool IsAvailable { get; set; }
 
+
     public ICollection<Reservation> Reservations { get; set; }
 }

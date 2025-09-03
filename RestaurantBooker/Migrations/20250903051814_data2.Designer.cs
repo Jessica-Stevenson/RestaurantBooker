@@ -12,7 +12,7 @@ using RestaurantBooker.Models;
 namespace RestaurantBooker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250903042453_data2")]
+    [Migration("20250903051814_data2")]
     partial class data2
     {
         /// <inheritdoc />

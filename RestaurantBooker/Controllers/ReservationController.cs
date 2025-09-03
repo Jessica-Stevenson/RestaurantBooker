@@ -21,9 +21,7 @@ namespace RestaurantBooker.Controllers
             var reservations = await _context.Reservations.ToListAsync();
             return View(reservations);
         }
-        // Your action methods...
-
-
+      
         // GET: /Reservation/Create
         [HttpGet]
         public IActionResult Create()
@@ -88,19 +86,40 @@ namespace RestaurantBooker.Controllers
             //Proceed if everything is valid
             else if (ModelState.IsValid)
             {
-                _context.Reservations.Add(reservation);
-                _context.SaveChanges();
-                return RedirectToAction("Index", "Reservation");
 
+                TempData["ReservationData"] = System.Text.Json.JsonSerializer.Serialize(reservation);
+
+                return RedirectToAction("SelectTable", "Reservation");
             }
 
             return View(reservation);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ConfirmReservation(int tableId)
+        {
+            if (TempData["ReservationData"] == null)
+            {
+                return RedirectToAction("Create");
+            }
+
+            var reservationJson = TempData["ReservationData"].ToString();
+            var reservation = System.Text.Json.JsonSerializer.Deserialize<Reservation>(reservationJson);
+
+            reservation.TableId = tableId;
+
+            _context.Reservations.Add(reservation);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
         public IActionResult SelectTable()
         {
             // Need some form of if statement checking to see if form is filled out/completed
-            var tables = _context.Tables.ToList();
+            var tables = _context.Tables.Where(t => t.IsAvailable).ToList();
             return View(tables);
         }
     
