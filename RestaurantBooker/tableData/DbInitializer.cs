@@ -12,7 +12,7 @@ public static class DbInitializer
 
         {
 
-            if (!context.Tables.Any())
+            if (context.Tables.Any())
             {
             return;
             }
