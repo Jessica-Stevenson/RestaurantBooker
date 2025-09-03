@@ -4,16 +4,16 @@ using RestaurantBooker.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("UserDbContext")
-    ?? throw new InvalidOperationException("Connection string 'UserDbContext' not found.");
+var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContext")
+    ?? throw new InvalidOperationException("Connection string 'ApplicationDbContext' not found.");
 
-builder.Services.AddDbContext<UserDBContext>(options =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 // Identity
 builder.Services.AddDefaultIdentity<User>(options =>
     options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<UserDBContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // MVC + Razor Pages
 builder.Services.AddControllersWithViews();
