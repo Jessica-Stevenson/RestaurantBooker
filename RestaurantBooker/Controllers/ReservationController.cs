@@ -7,9 +7,10 @@ namespace RestaurantBooker.Controllers
     public class ReservationController : Controller
     {
 
-        private readonly UserDBContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public ReservationController(UserDBContext context)
+
+        public ReservationController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -20,13 +21,18 @@ namespace RestaurantBooker.Controllers
             var reservations = await _context.Reservations.ToListAsync();
             return View(reservations);
         }
+        // Your action methods...
+
 
         // GET: /Reservation/Create
         [HttpGet]
         public IActionResult Create()
         {
+
             return View();
+
         }
+
 
         [HttpGet]
         public IActionResult Delete(int id)
@@ -40,22 +46,64 @@ namespace RestaurantBooker.Controllers
         }
 
 
-        // POST: /Reservation/Create
+        //// POST: /Reservation/Create
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Create(Reservation reservation)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        // Save reservation logic here (e.g., to a database)
+        //        _context.Reservations.Add(reservation);
+        //        _context.SaveChanges();
+        //        return RedirectToAction("Index", "Reservation");
+        //    }
+
+        //    return View(reservation);
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Reservation reservation)
         {
-            if (ModelState.IsValid)
+            // Check guest limit first
+            if (reservation.NumberOfGuests > 12)
             {
-                // Save reservation logic here (e.g., to a database)
+                ModelState.AddModelError("NumberOfGuests", "Number of guests exceeded");
+                return View(reservation);
+            }
+
+            // Check for double booking
+            bool isDoubleBooked = _context.Reservations.Any(r =>
+                r.StartTime == reservation.StartTime &&
+                r.EndTime == reservation.EndTime &&
+                r.RoomId == reservation.RoomId);
+
+            if (isDoubleBooked)
+            {
+                ModelState.AddModelError("", "There's already a reservation at this time.");
+                return View(reservation);
+            }
+
+            //Proceed if everything is valid
+            else if (ModelState.IsValid)
+            {
                 _context.Reservations.Add(reservation);
                 _context.SaveChanges();
                 return RedirectToAction("Index", "Reservation");
+
             }
 
             return View(reservation);
         }
 
+        public IActionResult SelectTable()
+        {
+            // Need some form of if statement checking to see if form is filled out/completed
+            var tables = _context.Tables.ToList();
+            return View(tables);
+        }
+    
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -70,8 +118,10 @@ namespace RestaurantBooker.Controllers
             try
             {
                 _context.Reservations.Remove(reservation);
+                
                 _context.SaveChanges();
             }
+
             catch (DbUpdateException)
             {
                 // 如果因为外键约束无法删除，可以给用户提示
@@ -81,6 +131,7 @@ namespace RestaurantBooker.Controllers
 
             return RedirectToAction(nameof(Index));
         }
+
 
     }
 }
