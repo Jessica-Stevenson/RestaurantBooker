@@ -68,6 +68,11 @@ nav {
     color: #FFFFFF;
 }
 
+.front-color {
+    color: #FA6A6A;
+    font-weight: bold; /* blod font */
+}
+
 .custom-colour,
 .custom-colour .nav-link,
 .custom-colour .navbar-brand,
