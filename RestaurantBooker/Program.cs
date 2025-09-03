@@ -25,7 +25,7 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// ------------------ Middleware ------------------
+// ------------------ Other Stuff ------------------
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");

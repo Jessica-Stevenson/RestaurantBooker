@@ -36,10 +36,25 @@ namespace RestaurantBooker.Controllers
             {
                 _context.Reservations.Add(reservation);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(SelectTable), new { id = reservation.Id });
             }
 
             return View(reservation);
+        }
+        // GET: /Reservation/SelectTable/{id}
+        [HttpGet]
+        public async Task<IActionResult> SelectTable(int id)
+        {
+            var reservation = await _context.Reservations.FindAsync(id);
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+
+            var tables = await _context.Tables.ToListAsync();
+
+            ViewBag.ReservationId = id;
+            return View(tables);
         }
 
         // GET: /Reservation/Delete/{id}

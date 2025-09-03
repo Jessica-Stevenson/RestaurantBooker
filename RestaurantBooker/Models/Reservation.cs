@@ -25,6 +25,6 @@ namespace RestaurantBooker.Models
         [Required, Range(1, 20)]
         public int NumberOfGuests { get; set; }
 
-        public string SpecialRequests { get; set; }
+        public string? SpecialRequests { get; set; }
     }
 }
