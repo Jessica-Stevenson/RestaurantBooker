@@ -10,7 +10,7 @@ var connectionString = builder.Configuration.GetConnectionString("ApplicationDbC
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// Identity
+//Identity
 builder.Services.AddDefaultIdentity<User>(options =>
     options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
@@ -39,10 +39,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Reservation}/{action=Create}/{id?}");
 
 app.MapRazorPages();
 

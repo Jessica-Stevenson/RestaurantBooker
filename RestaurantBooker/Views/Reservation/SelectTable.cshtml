@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Table>
+
+<h2 style="text-align:center; font-weight:600;">Select Your Table</h2>
+
+<div class="table-layout">
+    @foreach (var table in Model)
+    {
+        var statusClass = table.IsAvailable ? "available" : "taken";
+        <div class="table-card @statusClass" onclick="selectTable(@table.Id)">
+            <p>Table @table.Id</p>
+            <p>Seats: @table.Capacity</p>
+        </div>
+    }
+
+</div>
+
+<!-- Color Key -->
+<div class="table-key">
+    <span class="key available"></span> Available
+    <span class="key taken"></span> Taken
+    <span class="key selected"></span> Selected
+</div>
+
+<!-- Hidden field to store selected table -->
+<input type="hidden" id="selectedTableId" name="TableId" />
+
+<!-- Reservation Button -->
+<form method="post" action="/Reservation/Create">
+    <input type="hidden" name="TableId" id="formTableId" />
+    <button type="submit" class="btn btn-danger">Create Reservation</button>
+</form>
+
+<script>
+    let selectedId = null;
+
+    function selectTable(id) {
+        selectedId = id;
+        document.getElementById("formTableId").value = id;
+
+        document.querySelectorAll(".table-card").forEach(card => {
+            card.classList.remove("selected");
+        });
+
+        document.querySelector(`.table-card:nth-child(${id})`).classList.add("selected");
+    }
+</script>
