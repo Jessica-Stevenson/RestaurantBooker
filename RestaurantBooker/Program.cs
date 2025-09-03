@@ -17,7 +17,7 @@ builder.Services.AddDefaultIdentity<User>(options =>
 
 // MVC + Razor Pages
 builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages(); //
+builder.Services.AddRazorPages(); 
 
 var app = builder.Build();
 
