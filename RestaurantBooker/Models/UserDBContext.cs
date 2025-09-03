@@ -9,7 +9,5 @@ namespace RestaurantBooker.Models
         {
 
         }
-
-        public DbSet<Reservation> Reservations { get; set; }
     }
 }
