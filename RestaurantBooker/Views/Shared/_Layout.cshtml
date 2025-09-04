@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -44,11 +47,20 @@
 
                         <ul class="navbar-nav ms-auto">
 
+
+							@* show user info if logged in *@
                             <ul class="navbar-nav ms-auto">
                                 @if (User.Identity.IsAuthenticated)
                                 {
+
                                     <li class="nav-item">
-                                        <span class="nav-link">Hello @User.Identity.Name!</span>
+
+                                        @{
+                                            var currentUser = await UserManager.GetUserAsync(User);
+                                        }
+
+                                        @* say hello to user with their Name *@
+                                        <span class="nav-link">Hello @currentUser?.FirstName @currentUser?.LastName!</span>
                                     </li>
 
                                     <li class="nav-item">
@@ -58,6 +70,7 @@
                                     </li>
 
                                 }
+
                                 else
                                 {
                                     <li class="nav-item">
@@ -68,6 +81,7 @@
                                         <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
                                     </li>
                                 }
+
                             </ul>
 
 
@@ -98,5 +112,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

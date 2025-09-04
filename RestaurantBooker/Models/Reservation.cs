@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace RestaurantBooker.Models
@@ -32,6 +33,8 @@ namespace RestaurantBooker.Models
 
         public string SpecialRequests { get; set; }
 
+
+        [ValidateNever]
         public Table Table { get; set; }
     }
 }

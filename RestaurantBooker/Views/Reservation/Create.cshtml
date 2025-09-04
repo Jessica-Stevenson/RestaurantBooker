@@ -67,6 +67,7 @@
               }
             }
         </script>
+
         <script>
             async function checkDoubleBooking(tableId, startTime, endTime) {
               const errorSpan = document.getElementById('guestError'); // You can create a separate span if needed
@@ -75,7 +76,9 @@
 
               if (!isAvailable) {
                 errorSpan.textContent = "This table is already booked at that time.";
-              } else {
+              }
+
+              else {
                 errorSpan.textContent = "";
               }
             }
@@ -97,12 +100,13 @@
         </div>
 
 
+            <button type="submit" class="btn btn-danger me-10">Book</button>
+           
+            <a asp-controller="Reservation" asp-action="SelectTable" class="btn btn-danger">Select table</a>
 
-        @* <button type="submit" class="btn btn-danger w-100">Book A Table</button> *@
 
-        <a asp-action="SelectTable" class="btn btn-danger">Book A Table</a>
 
-    </form>
+        </form>
 
     </div>
 </div>
