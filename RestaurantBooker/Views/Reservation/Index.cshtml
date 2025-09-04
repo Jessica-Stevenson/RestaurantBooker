@@ -1,1 +1,59 @@
-﻿
+﻿@model IEnumerable<RestaurantBooker.Models.Reservation>
+
+<table class="reservation-table table">
+
+    <h1 class="custom-title me-2 mb-10">Reservation Table</h1>
+
+    <br />
+    <br />
+
+    <p class="me-2">
+        <a asp-controller="Reservation" asp-action="Create" class="custom-btn mb-5">New Booking</a>
+    </p>
+
+
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>NumberOfGuests</th>
+            <th>SpecialRequests</th>
+            <th>Table</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.Phone</td>
+                    <td>@item.Email</td>
+                    <td>@item.Date.ToShortDateString()</td>
+                    <td>@item.Time.ToString(@"hh\:mm")</td>
+                    <td>@item.NumberOfGuests</td>
+                    <td>@item.SpecialRequests</td>
+                    <th>@item.TableId</th>
+
+                    <td>
+
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" class="text-center">No reservations found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
