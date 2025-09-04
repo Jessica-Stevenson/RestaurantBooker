@@ -47,10 +47,12 @@
 
                         <ul class="navbar-nav ms-auto">
 
+
 							@* show user info if logged in *@
                             <ul class="navbar-nav ms-auto">
                                 @if (User.Identity.IsAuthenticated)
                                 {
+
                                     <li class="nav-item">
 
                                         @{
@@ -61,14 +63,11 @@
                                         <span class="nav-link">Hello @currentUser?.FirstName @currentUser?.LastName!</span>
                                     </li>
 
-                                  
-
                                     <li class="nav-item">
                                         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home")" method="post" class="form-inline">
                                             <button type="submit" class="btn btn-danger">Logout</button>
                                         </form>
                                     </li>
-
 
                                 }
 
@@ -113,5 +112,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>
