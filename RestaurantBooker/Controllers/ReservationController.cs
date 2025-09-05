@@ -6,6 +6,7 @@ namespace RestaurantBooker.Controllers
 {
     public class ReservationController : Controller
     {
+
         private readonly ApplicationDbContext _context;
 
         public ReservationController(ApplicationDbContext context)
