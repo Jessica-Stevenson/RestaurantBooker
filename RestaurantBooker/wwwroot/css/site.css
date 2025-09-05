@@ -114,51 +114,6 @@ nav {
     scrollbar-color: #FA6A6A #f1f1f1;
 }
 
-/*Table UI*/
-.layout {
-    position: relative;
-    width: 800px;
-    height: 600px;
-    margin: auto;
-}
-
-.table {
-    position: absolute;
-    cursor: pointer;
-}
-
-.circle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: peru;
-}
-
-.rectangle {
-    width: 60px;
-    height: 40px;
-    background: peru;
-}
-
-.oval {
-    width: 70px;
-    height: 40px;
-    border-radius: 50%;
-    background: peru;
-}
-
-.available {
-    background: peru;
-}
-
-.taken {
-    background: crimson;
-}
-
-.selected {
-    background: purple;
-}
-
 
 /*table color-profile change*/
 .reservation-table {
@@ -238,4 +193,54 @@ nav {
 
     .key.selected {
         background-color: #c084fc;
+    }
+
+
+.table-card {
+    cursor: pointer;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    width: 150px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+    .table-card:hover {
+        transform: scale(1.05);
+    }
+
+.available {
+    background-color: #d4edda; /* light green */
+}
+
+.taken {
+    background-color: #f8d7da; /* light red */
+}
+
+.selected {
+    background-color: #cce5ff !important; /* light blue */
+    border: 2px solid #004085;
+}
+
+.legend-box {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+    .legend-box.available {
+        background-color: #d4edda;
+    }
+
+    .legend-box.taken {
+        background-color: #f8d7da;
+    }
+
+    .legend-box.selected {
+        background-color: #cce5ff;
     }
