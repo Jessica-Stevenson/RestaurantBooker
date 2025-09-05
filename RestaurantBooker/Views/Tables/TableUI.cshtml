@@ -1,0 +1,23 @@
+﻿@* @model IEnumerable<Table>
+
+<div class="layout">
+    @foreach (var table in Model)
+    {
+        <div class="table @(table.Status.ToLower())"
+             style="left:@table.PositionXpx; top:@table.PositionYpx;"
+             onclick="reserveTable(@table.Id)">
+            @if (table.Shape == "Circle")
+            {
+                <div class="circle"></div>
+            }
+            else if (table.Shape == "Rectangle")
+            {
+                <div class="rectangle"></div>
+            }
+            else if (table.Shape == "Oval")
+            {
+                <div class="oval"></div>
+            }
+        </div>
+    }
+</div> *@
