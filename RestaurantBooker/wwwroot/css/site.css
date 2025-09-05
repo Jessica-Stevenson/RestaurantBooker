@@ -46,10 +46,6 @@ nav {
     box-shadow: 0 0 8px #ff99aa; /* outline */
 }
 
-    .custom-btn:hover {
-        background-color: #FF4343; /* hover darker */
-        color: white;
-    }
 
 .custom-title {
     background-color: #f8b4b4; /* background */
@@ -117,7 +113,7 @@ nav {
 
 /*table color-profile change*/
 .reservation-table {
-    background-color: #DD7777; /* table back background */
+    background-color: #E9A8A8; /* table back background */
     border: 2px solid #FF5C5C; /* outline  */
 }
 

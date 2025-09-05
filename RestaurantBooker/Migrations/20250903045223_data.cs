@@ -8,6 +8,7 @@ namespace RestaurantBooker.Migrations
     /// <inheritdoc />
     public partial class data : Migration
     {
+
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
