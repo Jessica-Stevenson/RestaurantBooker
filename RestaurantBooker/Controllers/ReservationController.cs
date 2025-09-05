@@ -127,11 +127,13 @@ namespace RestaurantBooker.Controllers
 
         public IActionResult Confirmtable()
         {
+
             //i need the slected table to be passed to the confirm reservation page
             // maybe a form that posts to confirm reservation with the table id
             // then the confirm reservation page can get the reservation from tempdata and the table from the form
             // then save the reservation with the table id
             // then redirect to the index page
+
             return RedirectToAction("Index");
 
         }

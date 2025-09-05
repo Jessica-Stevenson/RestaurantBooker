@@ -18,9 +18,11 @@ public static class DbInitializer
             }
 
             context.Tables.AddRange(
+
                 new Table { Location = "Window", Capacity = 4, IsAvailable = true },
                 new Table { Location = "Booth", Capacity = 2, IsAvailable = true },
                 new Table { Location = "Patio", Capacity = 6, IsAvailable = true }
+
             );
             context.SaveChanges();
         }

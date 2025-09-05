@@ -27,5 +27,6 @@ namespace RestaurantBooker.Models
                         .HasForeignKey(o => o.TableId); // The foreign key in Order is CustomerId
         }
 
+
     }
 }
