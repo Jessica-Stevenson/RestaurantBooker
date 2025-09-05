@@ -8,7 +8,7 @@
     <h2 class="letter-Front text-center text-primary mb-4">Reserve your table</h2>
 
     <div class="letter-Front">
-        <form asp-action="Create" method="post" class="mx-auto" style="max-width: 600px;">
+        <form asp-controller="Reservation" asp-action="Create" method="post" class="mx-auto" style="max-width: 600px;">
 
         <div class="mb-3">
             <label asp-for="Name" class="form-label">Name</label>
@@ -101,9 +101,6 @@
 
 
             <button type="submit" class="btn btn-danger me-10">Book</button>
-           
-            <a asp-controller="Reservation" asp-action="SelectTable" class="btn btn-danger">Select table</a>
-
 
 
         </form>
