@@ -1,4 +1,5 @@
 ﻿@model RestaurantBooker.Models.Reservation
+
 @{
     ViewData["Title"] = "Reservation";
 }
@@ -7,7 +8,7 @@
     <h2 class="letter-Front text-center text-primary mb-4">Reserve your table</h2>
 
     <div class="letter-Front">
-        <form asp-action="Create" method="post" class="mx-auto" style="max-width: 600px;">
+        <form asp-controller="Reservation" asp-action="Create" method="post" class="mx-auto" style="max-width: 600px;">
 
         <div class="mb-3">
             <label asp-for="Name" class="form-label">Name</label>
@@ -66,6 +67,7 @@
               }
             }
         </script>
+
         <script>
             async function checkDoubleBooking(tableId, startTime, endTime) {
               const errorSpan = document.getElementById('guestError'); // You can create a separate span if needed
@@ -74,7 +76,9 @@
 
               if (!isAvailable) {
                 errorSpan.textContent = "This table is already booked at that time.";
-              } else {
+              }
+
+              else {
                 errorSpan.textContent = "";
               }
             }
@@ -95,13 +99,11 @@
             <span asp-validation-for="SpecialRequests" class="text-danger"></span>
         </div>
 
-//Vison
 
-        <button type="submit" class="btn btn-danger w-100">Book A Table</button>
-=======
-        <a asp-action="SelectTable" class="btn btn-danger">Book A Table</a>
-//Tegan
-    </form>
+            <button type="submit" class="btn btn-danger me-10">Book</button>
+
+
+        </form>
 
     </div>
 </div>

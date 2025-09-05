@@ -68,6 +68,11 @@ nav {
     color: #FFFFFF;
 }
 
+.front-color {
+    color: #FA6A6A;
+    font-weight: bold; /* blod font */
+}
+
 .custom-colour,
 .custom-colour .nav-link,
 .custom-colour .navbar-brand,
@@ -81,7 +86,7 @@ nav {
     color: #f1f1f1;
 }
 
-/* ===== GLOBAL SCROLLBAR IN BRAND COLOR ===== */
+/* ScrollBar */
 
 /* Chrome, Edge, Safari */
 ::-webkit-scrollbar {
@@ -90,30 +95,29 @@ nav {
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Track background */
+    background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #FA6A6A; /* Brand color */
+    background-color: #FA6A6A;
     border-radius: 10px;
-    border: 2px solid #f1f1f1; /* Padding around thumb */
+    border: 2px solid #f1f1f1;
 }
 
-    ::-webkit-scrollbar-thumb:hover {
-        background-color: #e25555; /* Darker shade on hover */
-    }
+::-webkit-scrollbar-thumb:hover {
+    background-color: #e25555;
+}
 
 /* Firefox */
 * {
     scrollbar-width: thin;
-    scrollbar-color: #FA6A6A #f1f1f1; /* thumb | track */
+    scrollbar-color: #FA6A6A #f1f1f1;
 }
 
-//Vison
 
 /*table color-profile change*/
 .reservation-table {
-    background-color: #f9f9ff; /* table back background */
+    background-color: #DD7777; /* table back background */
     border: 2px solid #FF5C5C; /* outline  */
 }
 
@@ -130,7 +134,7 @@ nav {
     /*.reservation-table tr:hover td {
         background-color: #FF4343;*/ /* change color when mouse on it */
     /*}*/
-=======
+
 .table-layout {
     display: flex;
     flex-wrap: wrap;
@@ -190,4 +194,53 @@ nav {
     .key.selected {
         background-color: #c084fc;
     }
-//Tegan
+
+
+.table-card {
+    cursor: pointer;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    width: 150px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+    .table-card:hover {
+        transform: scale(1.05);
+    }
+
+.available {
+    background-color: #d4edda; /* light green */
+}
+
+.taken {
+    background-color: #f8d7da; /* light red */
+}
+
+.selected {
+    background-color: #cce5ff !important; /* light blue */
+    border: 2px solid #004085;
+}
+
+.legend-box {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+    .legend-box.available {
+        background-color: #d4edda;
+    }
+
+    .legend-box.taken {
+        background-color: #f8d7da;
+    }
+
+    .legend-box.selected {
+        background-color: #cce5ff;
+    }

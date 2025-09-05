@@ -9,11 +9,11 @@ using RestaurantBooker.Models;
 
 #nullable disable
 
-namespace RestaurantBooker.Migrations.ApplicationDb
+namespace RestaurantBooker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250902014426_AddIsAvailableToTable")]
-    partial class AddIsAvailableToTable
+    [Migration("20250903045223_data")]
+    partial class data
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

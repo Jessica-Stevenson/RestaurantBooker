@@ -4,34 +4,21 @@ using RestaurantBooker.Models;
 
 namespace RestaurantBooker.Controllers
 {
-
     public class ReservationController : Controller
     {
-
-
-//Vison
-        private readonly UserDBContext _context;
-
-        public ReservationController(UserDBContext context)
-=======
         private readonly ApplicationDbContext _context;
 
         public ReservationController(ApplicationDbContext context)
-//Tegan
         {
             _context = context;
         }
 
-//Vison
+        // Show all reservations
         public async Task<IActionResult> Index()
         {
-            // enusre it enter List，not null
             var reservations = await _context.Reservations.ToListAsync();
             return View(reservations);
         }
-=======
-        // Your action methods...
-//Tegan
 
         // GET: /Reservation/Create
         [HttpGet]
@@ -40,56 +27,120 @@ namespace RestaurantBooker.Controllers
             return View();
         }
 
-        // GET: /Reservation/Edit/5
-        [HttpGet]
-        public IActionResult Edit(int Id) {
-            return View(Edit);
-        }
-
         // POST: /Reservation/Create
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(Reservation reservation)
         {
-            // Check guest limit first
             if (reservation.NumberOfGuests > 12)
             {
                 ModelState.AddModelError("NumberOfGuests", "Number of guests exceeded");
                 return View(reservation);
             }
 
-            // Check for double booking
-            bool isDoubleBooked = _context.Reservations.Any(r =>
-                r.StartTime == reservation.StartTime &&
-                r.EndTime == reservation.EndTime &&
-                r.RoomId == reservation.RoomId);
-
-            if (isDoubleBooked)
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "There's already a reservation at this time.");
-                return View(reservation);
-            }
-
-            //Proceed if everything is valid
-            else if (ModelState.IsValid)
-            {
-//Vison
-                // Save reservation logic here (e.g., to a database)
-                return RedirectToAction("Index", "Reservation");
-=======
-                _context.Reservations.Add(reservation);
-                _context.SaveChanges();
-                return RedirectToAction("Index");
-//Tegan
+                return View("SelectTable", new SelectTableViewModel
+                {
+                    Reservation = reservation,
+                    Tables = GetTablesForReservation(reservation)
+                });
             }
 
             return View(reservation);
         }
 
-        public IActionResult SelectTable()
+        // POST: /Reservation/ConfirmReservation
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ConfirmReservation(Reservation reservation)
         {
-            // Need some form of if statement checking to see if form is filled out/completed
+            var startDateTime = reservation.Date.Date + reservation.Time;
+            var endDateTime = startDateTime.AddHours(2);
+
+            // check if table is already taken
+            bool isTaken = _context.Reservations.Any(r =>
+                r.TableId == reservation.TableId &&
+                r.Date == reservation.Date &&
+                (r.StartTime < endDateTime && r.EndTime > startDateTime)
+            );
+
+            if (isTaken)
+            {
+                ModelState.AddModelError("", "That table is already booked at the selected time.");
+                return View("SelectTable", new SelectTableViewModel
+                {
+                    Reservation = reservation,
+                    Tables = GetTablesForReservation(reservation)
+                });
+            }
+
+            reservation.StartTime = startDateTime;
+            reservation.EndTime = endDateTime;
+
+            _context.Reservations.Add(reservation);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        // GET: /Reservation/Delete/{id}
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var reservation = _context.Reservations.Find(id);
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+            return View(reservation);
+        }
+
+        // POST: /Reservation/Delete/{id}
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var reservation = _context.Reservations.Find(id);
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                _context.Reservations.Remove(reservation);
+                _context.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                ModelState.AddModelError("", "Unable to delete this reservation. It may be used by other records.");
+                return View(reservation);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        // helper: get tables with availability info
+        private IEnumerable<Table> GetTablesForReservation(Reservation reservation)
+        {
+            var startDateTime = reservation.Date.Date + reservation.Time;
+            var endDateTime = startDateTime.AddHours(2);
+
             var tables = _context.Tables.ToList();
-            return View(tables);
+
+            foreach (var table in tables)
+            {
+                bool isTaken = _context.Reservations.Any(r =>
+                    r.TableId == table.Id &&
+                    r.Date == reservation.Date &&
+                    (r.StartTime < endDateTime && r.EndTime > startDateTime)
+                );
+
+                table.IsAvailable = !isTaken;
+            }
+
+            return tables;
         }
     }
 }

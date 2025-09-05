@@ -1,33 +1,74 @@
-﻿@model IEnumerable<Table>
+﻿@model RestaurantBooker.Models.SelectTableViewModel
 
-<h2 style="text-align:center; font-weight:600;">Select Your Table</h2>
+<h2 class="text-center fw-bold mb-4">Select Your Table</h2>
 
-<div class="table-layout">
-    @foreach (var table in Model)
+@{
+    // group tables by location
+    var groupedTables = Model.Tables.GroupBy(t => t.Location);
+}
+
+<div class="container">
+    @foreach (var group in groupedTables)
     {
-        var statusClass = table.IsAvailable ? "available" : "taken";
-        <div class="table-card @statusClass" onclick="selectTable(@table.Id)">
-            <p>Table @table.Id</p>
-            <p>Seats: @table.Capacity</p>
+        <div class="mb-5">
+            <h3 class="mb-3 text-secondary text-center">@group.Key</h3>
+
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                @foreach (var table in group)
+                {
+                    var statusClass = table.IsAvailable ? "available" : "taken";
+
+                    <div class="table-card @statusClass"
+                         data-id="@table.Id"
+                         onclick="@(table.IsAvailable ? $"selectTable({table.Id})" : "alert('This table is already booked at that time.')")">
+                        <p><strong>Table @table.Id</strong></p>
+                        <p>Seats: @table.Capacity</p>
+                    </div>
+                }
+            </div>
         </div>
     }
 </div>
 
-<!-- Color Key -->
-<div class="table-key">
-    <span class="key available"></span> Available
-    <span class="key taken"></span> Taken
-    <span class="key selected"></span> Selected
+<!-- Reservation Form -->
+<form method="post" asp-action="ConfirmReservation" asp-controller="Reservation" class="text-center mt-4">
+    <input type="hidden" id="formTableId" name="TableId" />
+
+    <!-- Hidden reservation fields -->
+    <input type="hidden" name="Id" value="@Model.Reservation.Id" />
+    <input type="hidden" name="Name" value="@Model.Reservation.Name" />
+    <input type="hidden" name="Email" value="@Model.Reservation.Email" />
+    <input type="hidden" name="Phone" value="@Model.Reservation.Phone" />
+    <input type="hidden" name="Date" value="@Model.Reservation.Date.ToString("yyyy-MM-dd")" />
+    <input type="hidden" name="Time" value="@Model.Reservation.Time" />
+    <input type="hidden" name="NumberOfGuests" value="@Model.Reservation.NumberOfGuests" />
+    <input type="hidden" name="SpecialRequests" value="@Model.Reservation.SpecialRequests" />
+
+    <button type="submit" class="btn btn-danger mt-3">Confirm Reservation</button>
+</form>
+
+<!-- Navigation -->
+<div class="text-center mt-3">
+    <a asp-controller="Reservation" asp-action="Index" class="btn btn-danger me-2">View Reservations</a>
+    <a asp-controller="Home" asp-action="Index" class="btn btn-danger">Home</a>
 </div>
 
-<!-- Hidden field to store selected table -->
-<input type="hidden" id="selectedTableId" name="TableId" />
+<!-- Legend -->
+<div class="text-center mt-4">
+    <span class="legend-box available"></span> Available
+    <span class="legend-box taken ms-3"></span> Taken
+    <span class="legend-box selected ms-3"></span> Selected
+</div>
 
-<!-- Reservation Button -->
-<form method="post" action="/Reservation/Create">
-    <input type="hidden" name="TableId" id="formTableId" />
-    <button type="submit" class="btn btn-danger">Create Reservation</button>
-</form>
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger mt-3 text-center">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <div>@error.ErrorMessage</div>
+        }
+    </div>
+}
 
 <script>
     let selectedId = null;
@@ -36,10 +77,12 @@
         selectedId = id;
         document.getElementById("formTableId").value = id;
 
+        // remove "selected" from all cards
         document.querySelectorAll(".table-card").forEach(card => {
             card.classList.remove("selected");
         });
 
-        document.querySelector(`.table-card:nth-child(${id})`).classList.add("selected");
+        // highlight selected card
+        document.querySelector(`.table-card[data-id='${id}']`).classList.add("selected");
     }
 </script>

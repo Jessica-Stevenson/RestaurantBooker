@@ -9,11 +9,11 @@ using RestaurantBooker.Models;
 
 #nullable disable
 
-namespace RestaurantBooker.Migrations.ApplicationDb
+namespace RestaurantBooker.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250902022301_AddIsSelectedToTable")]
-    partial class AddIsSelectedToTable
+    [Migration("20250903051814_data2")]
+    partial class data2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -301,9 +301,6 @@ namespace RestaurantBooker.Migrations.ApplicationDb
                         .HasColumnType("int");
 
                     b.Property<bool>("IsAvailable")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsSelected")
                         .HasColumnType("bit");
 
                     b.Property<string>("Location")
