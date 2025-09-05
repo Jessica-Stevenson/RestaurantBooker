@@ -46,10 +46,6 @@ nav {
     box-shadow: 0 0 8px #ff99aa; /* outline */
 }
 
-    .custom-btn:hover {
-        background-color: #FF4343; /* hover darker */
-        color: white;
-    }
 
 .custom-title {
     background-color: #f8b4b4; /* background */
