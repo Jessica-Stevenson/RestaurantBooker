@@ -18,12 +18,15 @@
                 {
                     var statusClass = table.IsAvailable ? "available" : "taken";
 
-                    <div class="table-card @statusClass"
+                    <div class="table-card @(table.IsAvailable ? "available" : "taken")"
                          data-id="@table.Id"
-                         onclick="@(table.IsAvailable ? $"selectTable({table.Id})" : "alert('This table is already booked at that time.')")">
+                         onclick="@(table.IsAvailable
+                                         ? $"selectTable({table.Id})"
+                                         : "alert('This table cannot be selected (too small or already booked).')")">
                         <p><strong>Table @table.Id</strong></p>
                         <p>Seats: @table.Capacity</p>
                     </div>
+
                 }
             </div>
         </div>
@@ -49,7 +52,6 @@
 
 <!-- Navigation -->
 <div class="text-center mt-3">
-    <a asp-controller="Reservation" asp-action="Index" class="btn btn-danger me-2">View Reservations</a>
     <a asp-controller="Home" asp-action="Index" class="btn btn-danger">Home</a>
 </div>
 
