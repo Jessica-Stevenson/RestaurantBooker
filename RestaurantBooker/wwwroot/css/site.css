@@ -150,19 +150,6 @@ nav {
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-.available {
-    background-color: #d2b48c; /* brown */
-}
-
-.taken {
-    background-color: #ff6f91; /* dark pink */
-    cursor: not-allowed;
-}
-
-.selected {
-    background-color: #c084fc; /* purple */
-}
-
 .table-key {
     display: flex;
     justify-content: center;
@@ -208,15 +195,15 @@ nav {
     }
 
 .available {
-    background-color: #d4edda; /* light green */
+    background-color: #bdf968;
 }
 
 .taken {
-    background-color: #f8d7da; /* light red */
+    background-color: #FA6A6A;
 }
 
 .selected {
-    background-color: #cce5ff !important; /* light blue */
+    background-color: #f968da !important;
     border: 2px solid #004085;
 }
 
@@ -230,13 +217,13 @@ nav {
 }
 
     .legend-box.available {
-        background-color: #d4edda;
+        background-color: #bdf968;
     }
 
     .legend-box.taken {
-        background-color: #f8d7da;
+        background-color: #FA6A6A;
     }
 
     .legend-box.selected {
-        background-color: #cce5ff;
+        background-color: #f968da;
     }
