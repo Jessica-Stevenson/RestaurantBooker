@@ -11,6 +11,11 @@
     <input type="hidden" asp-for="Id" />
     @Html.AntiForgeryToken()
 
-    <button type="submit" class="btn btn-danger">Delete</button>
-    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    <div class="d-flex justify-content-between mb-2">
+
+        <button type="submit" class="btn btn-danger ">Delete</button>
+
+		<a asp-action="Index" class="btn btn-secondary">Cancel</a>
+
+	</div>
 </form>
