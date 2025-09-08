@@ -24,15 +24,17 @@ namespace RestaurantBooker.Models
 
         [Required, DataType(DataType.Time)]
         public TimeSpan Time { get; set; }
+
         public DateTime StartTime { get; set; }
+
         public DateTime EndTime { get; set; }
+
         public int RoomId { get; set; }
 
         [Required, Range(1, 12)]
         public int NumberOfGuests { get; set; }
 
         public string SpecialRequests { get; set; }
-
 
         [ValidateNever]
         public Table Table { get; set; }

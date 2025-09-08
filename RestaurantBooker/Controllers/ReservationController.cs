@@ -55,10 +55,20 @@ namespace RestaurantBooker.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult ConfirmReservation(Reservation reservation)
         {
+            var table = _context.Tables.Find(reservation.TableId);
+            if (table == null || reservation.NumberOfGuests > table.Capacity)
+            {
+                ModelState.AddModelError("", "Selected table does not have enough seats.");
+                return View("SelectTable", new SelectTableViewModel
+                {
+                    Reservation = reservation,
+                    Tables = GetTablesForReservation(reservation)
+                });
+            }
+
             var startDateTime = reservation.Date.Date + reservation.Time;
             var endDateTime = startDateTime.AddHours(2);
 
-            // check if table is already taken
             bool isTaken = _context.Reservations.Any(r =>
                 r.TableId == reservation.TableId &&
                 r.Date == reservation.Date &&
@@ -81,8 +91,9 @@ namespace RestaurantBooker.Controllers
             _context.Reservations.Add(reservation);
             _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Details", new { id = reservation.Id });
         }
+
 
         // GET: /Reservation/Delete/{id}
         [HttpGet]
@@ -146,10 +157,27 @@ namespace RestaurantBooker.Controllers
                     (r.StartTime < endDateTime && r.EndTime > startDateTime)
                 );
 
-                table.IsAvailable = !isTaken;
+                table.IsAvailable = !isTaken && table.Capacity >= reservation.NumberOfGuests;
             }
 
             return tables;
         }
+
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            var reservation = _context.Reservations
+                .Include(r => r.Table) // include table details
+                .FirstOrDefault(r => r.Id == id);
+
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+
+            return View(reservation);
+        }
+
+
     }
 }
