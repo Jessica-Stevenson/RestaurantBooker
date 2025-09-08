@@ -107,9 +107,8 @@ namespace RestaurantBooker.Controllers
             // then save the reservation with the table id
             // then redirect to the index page
 
-            return RedirectToAction("Index");
-
             var reservation = _context.Reservations.Find(id);
+
             if (reservation == null)
             {
                 return NotFound();
