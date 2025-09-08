@@ -25,6 +25,7 @@ namespace RestaurantBooker.Controllers
 
         public async Task<IActionResult> Index()
         {
+
             var user = await _userManager.GetUserAsync(User);
 
             var model = new ProfileViewModel
