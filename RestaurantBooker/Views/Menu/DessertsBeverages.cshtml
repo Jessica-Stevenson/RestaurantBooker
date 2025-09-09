@@ -54,6 +54,11 @@
     </div>
 </div>
 
-<div style="text-align: center; margin-top: 20px;">
-    <a href="/StartersMains" class="btn btn-primary">Go to Starters & Mains Menu</a>
+<div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;">
+    <a href="@Url.Action("StartersMains", "Menu")" class="menu-category-link">
+        <span class="category-title">Starters &amp; Mains</span>
+    </a>
+    <a href="@Url.Action("DessertsBeverages", "Menu")" class="menu-category-link">
+        <span class="category-title">Desserts</span>
+    </a>
 </div>
