@@ -86,7 +86,7 @@ nav {
 /* ------------- ------------- */
 /* General MENU PAGE Styling */
 body {
-    background-color: #fcebeb; /* Corresponds to the light pink background */
+    background-color: #fff; /* Corresponds to the light pink background */
 }
 
 .menu-container {
@@ -180,13 +180,12 @@ body {
 
 /* Custom color for header and footer */
 .custom-colour {
-    background-color: #e7878e;
+    background-color: #FA6A6A;
 }
 
 /* Style for navigation bar links to match design */
 .nav-link {
     color: white !important; /* Forces the link color to white */
-    font-weight: bold;
 }
 
 /* Style for the 'Restaurant Booker' brand link */
@@ -291,19 +290,19 @@ button.accept-policy {
     border: 2px solid #FF5C5C; /* outline  */
 }
 
-    .reservation-table th {
-        background-color: #DD7777; /* title */
-        color: white;
-    }
+.reservation-table th {
+    background-color: #DD7777; /* title */
+    color: white;
+}
 
-    .reservation-table td {
-        background-color: #E9A8A8; /* table background */
-        color: #333;
-    }
+.reservation-table td {
+    background-color: #E9A8A8; /* table background */
+    color: #333;
+}
 
-    /*.reservation-table tr:hover td {
-        background-color: #FF4343;*/ /* change color when mouse on it */
-    /*}*/
+/*.reservation-table tr:hover td {
+    background-color: #FF4343;*/ /* change color when mouse on it */
+/*}*/
 
 .table-layout {
     display: flex;
@@ -340,17 +339,17 @@ button.accept-policy {
     margin-right: 6px;
 }
 
-    .key.available {
-        background-color: #d2b48c;
-    }
+.key.available {
+    background-color: #d2b48c;
+}
 
-    .key.taken {
-        background-color: #ff6f91;
-    }
+.key.taken {
+    background-color: #ff6f91;
+}
 
-    .key.selected {
-        background-color: #c084fc;
-    }
+.key.selected {
+    background-color: #c084fc;
+}
 
 
 .table-card {

@@ -5,7 +5,7 @@ namespace RestaurantBooker.Controllers
     public class MenuController : Controller
     {
         // This action will handle the main menu page (e.g., /Menu/Index)
-        public IActionResult Index()
+        public IActionResult Menu()
         {
             return View();
         }
