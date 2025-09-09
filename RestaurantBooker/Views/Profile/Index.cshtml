@@ -1,0 +1,44 @@
+﻿@model ProfileViewModel
+
+<h2 class="custom-title mb-3">My Profile</h2>
+
+<br />
+
+<form asp-action="Index" method="post">
+
+    <div class="letter-Front mb-3">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" class="form-control" />
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+    </div>
+
+    
+    <div class="letter-Front mb-3">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" class="form-control" />
+        <span asp-validation-for="LastName" class="text-danger"></span>
+    </div>
+
+    <div class="letter-Front mb-3">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="letter-Front mb-3">
+        <label asp-for="UserName"></label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+    <button type="submit" class="btn btn-danger">Save Changes</button>
+    <a asp-action="Delete" class="btn btn-warning">Delete Account</a>
+    </div>
+
+</form>
+
+@if (ViewBag.StatusMessage != null)
+{
+    <div class="alert alert-success mt-3">@ViewBag.StatusMessage</div>
+}

@@ -1,0 +1,69 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Starters & Mains";
+}
+
+<div class="menu-container">
+    <h1 class="menu-section-title">STARTERS</h1>
+    <div class="menu-items-grid">
+        <div class="menu-item">
+            <img src="/images/Crispy Calamari.png" alt="Crispy Calamari" class="item-image" />
+            <h3 class="item-name">Crispy Calamari</h3>
+            <p class="item-description">Lightly fried calamari served with a zesty lemon-garlic aioli.</p>
+        </div>
+        <div class="menu-item">
+            <img src="/images/Caprese Skewers.png" alt="Caprese Skewers" class="item-image" />
+            <h3 class="item-name">Caprese Skewers</h3>
+            <p class="item-description">Fresh mozzarella, cherry tomatoes, and basil drizzled with a balsamic glaze.</p>
+        </div>
+        <div class="menu-item">
+            <img src="/images/Truffle Fries.png" alt="Truffle Fries" class="item-image" />
+            <h3 class="item-name">Truffle Fries</h3>
+            <p class="item-description">Golden fries tossed with Parmesan cheese, parsley, and white truffle oil.</p>
+        </div>
+    </div>
+
+    <h1 class="menu-section-title">MAINS</h1>
+    <div class="menu-items-grid">
+        <div class="menu-item">
+            <img src="/images/Bistro Burger.png" alt="Bistro Burger" class="item-image" />
+            <h3 class="item-name">Bistro Burger</h3>
+            <p class="item-description">A juicy beef patty topped with aged cheddar, caramelized onions, bacon, and a brioche bun. Served with a side of house salad or fries.</p>
+        </div>
+        <div class="menu-item">
+            <img src="/images/Vege Lasagna.png" alt="Vegetable Lasagne" class="item-image" />
+            <h3 class="item-name">Vegetable Lasagne</h3>
+            <p class="item-description">Layers of fresh pasta, roasted vegetables, ricotta, and a rich tomato sauce, baked with a golden cheese crust.</p>
+        </div>
+        <div class="menu-item">
+            <img src="/images/Pan Seared Salmon.png" alt="Pan-Seared Salmon" class="item-image" />
+            <h3 class="item-name">Pan-Seared Salmon</h3>
+            <p class="item-description">Wild-caught salmon fillet seasoned and seared to perfection, served on a bed of quinoa with roasted asparagus.</p>
+        </div>
+        <div class="menu-item">
+            <img src="/images/Beef Lamb Kebabs.png" alt="Beef/Lamb Kebabs" class="item-image" />
+            <h3 class="item-name">Beef/Lamb Kebabs</h3>
+            <p class="item-description">Skewers of marinated beef and lamb grilled to tender perfection, served with a side of fluffy couscous and a cucumber-yogurt sauce.</p>
+        </div>
+        <div class="menu-item">
+            <img src="/images/Chicken Marsala.png" alt="Chicken Marsala" class="item-image" />
+            <h3 class="item-name">Chicken Marsala</h3>
+            <p class="item-description">Tender chicken breast sauteed with mushrooms in a rich Marsala wine sauce, served with creamy mashed potatoes.</p>
+        </div>
+        <div class="menu-item">
+            <img src="/images/FishnChips.png" alt="Fish n' Chips" class="item-image" />
+            <h3 class="item-name">Fish n' Chips</h3>
+            <p class="item-description">Classic pub fare featuring beer-battered cod fillets, served with a side of crispy fries, tartar sauce, and a lemon wedge.</p>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;">
+    <a href="@Url.Action("StartersMains", "Menu")" class="menu-category-link">
+        <span class="category-title">Starters &amp; Mains</span>
+    </a>
+    <a href="@Url.Action("DessertsBeverages", "Menu")" class="menu-category-link">
+        <span class="category-title">Desserts</span>
+    </a>
+</div>

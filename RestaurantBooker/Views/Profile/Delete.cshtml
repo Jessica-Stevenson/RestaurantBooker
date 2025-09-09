@@ -1,0 +1,21 @@
+﻿@model RestaurantBooker.Models.ProfileViewModel
+@{
+    ViewData["Title"] = "Delete Profile";
+}
+
+<h2>Delete Profile</h2>
+
+<div class="alert alert-danger">
+    <strong>Warning!</strong> You are about to delete your account. This action cannot be undone.
+</div>
+
+<div>
+    <p><strong>Name:</strong> @Model.FirstName @Model.LastName</p>
+    <p><strong>Email:</strong> @Model.Email</p>
+    <p><strong>Username:</strong> @Model.UserName</p>
+</div>
+
+<form asp-action="Delete" method="post">
+    <button type="submit" class="btn btn-danger">Delete Account</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

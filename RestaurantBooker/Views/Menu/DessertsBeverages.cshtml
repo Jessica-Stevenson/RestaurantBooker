@@ -1,0 +1,64 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Desserts & Beverages";
+}
+
+<div class="menu-container">
+    <h1 class="menu-section-title">DESSERTS</h1>
+    <div class="menu-items-grid">
+        <div class="menu-item">
+            <img src="/images/Molten Lava Cake.png" alt="Molten Lava Cake" class="item-image" />
+            <h3 class="item-name">Molten Lava Cake</h3>
+            <p class="item-description">A warm, decadent chocolate cake with a gooey center, served with a scoop of vanilla bean ice cream.</p>
+        </div>
+        <div class="menu-item">
+            <img src="/images/Creme Brulee.png" alt="Creme Brulee" class="item-image" />
+            <h3 class="item-name">Creme Brulee</h3>
+            <p class="item-description">Rich custard topped with a layer of hardened caramelized sugar.</p>
+        </div>
+        <div class="menu-item">
+            <img src="/images/New York Cheesecake.png" alt="New York Cheesecake" class="item-image" />
+            <h3 class="item-name">New York Cheesecake</h3>
+            <p class="item-description">Classic, creamy cheesecake with a graham cracker crust, topped with your choice of berry compote or chocolate sauce.</p>
+        </div>
+    </div>
+
+    <h1 class="menu-section-title">BEVERAGES</h1>
+    <div class="menu-items-grid">
+        <div class="menu-item">
+            <img src="/images/Soft Drinks.png" alt="Soft Drinks" class="item-image" />
+            <h3 class="item-name">Soft Drinks</h3>
+            <p class="item-description">Coke, Coke Zero, Fanta, Sprite</p>
+        </div>
+        <div class="menu-item">
+            <img src="/images/Lemonade.png" alt="Lemonade" class="item-image" />
+            <h3 class="item-name">Lemonade</h3>
+            <p class="item-description">Lemon Lime & Bitters</p>
+        </div>
+        <div class="menu-item">
+            <img src="/images/Juices.png" alt="Juices" class="item-image" />
+            <h3 class="item-name">Juices</h3>
+            <p class="item-description">Orange Juice, Grapefruit, Apple Juice</p>
+        </div>
+        <div class="menu-item">
+            <img src="/images/Hot Deverages Te Coffee.png" alt="Hot Drinks" class="item-image" />
+            <h3 class="item-name">Hot Drinks</h3>
+            <p class="item-description">Tea, Coffee</p>
+        </div>
+        <div class="menu-item">
+            <img src="/images/Wine.png" alt="Alcoholic Beverages" class="item-image" />
+            <h3 class="item-name">Alcoholic Beverages</h3>
+            <p class="item-description">Wines, Beers, Spirits, Cocktails</p>
+        </div>
+    </div>
+</div>
+
+<div style="display: flex; justify-content: center; gap: 20px; margin-top: 10px;">
+    <a href="@Url.Action("StartersMains", "Menu")" class="menu-category-link">
+        <span class="category-title">Starters &amp; Mains</span>
+    </a>
+    <a href="@Url.Action("DessertsBeverages", "Menu")" class="menu-category-link">
+        <span class="category-title">Desserts</span>
+    </a>
+</div>
