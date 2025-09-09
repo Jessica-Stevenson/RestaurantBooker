@@ -178,6 +178,97 @@ namespace RestaurantBooker.Controllers
             return View(reservation);
         }
 
+        // GET: /Reservation/Update/{id}
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            var reservation = _context.Reservations.Find(id);
+            if (reservation == null)
+            {
+                return NotFound();
+            }
+
+            // Pass list of tables to view
+            ViewBag.Tables = _context.Tables
+                .Select(t => new
+                {
+                    Id = t.Id,
+                    Display = $"Table {t.Id} (Seats {t.Capacity})"
+                })
+                .ToList();
+
+            return View(reservation);
+        }
+
+
+        // POST: /Reservation/Update/{id}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(int id, Reservation updatedReservation)
+        {
+            if (id != updatedReservation.Id)
+            {
+                return BadRequest();
+            }
+
+            // Always repopulate tables in case of returning the view
+            ViewBag.Tables = _context.Tables
+                .Select(t => new
+                {
+                    Id = t.Id,
+                    Display = $"Table {t.Id} (Seats {t.Capacity})"
+                })
+                .ToList();
+
+            if (updatedReservation.NumberOfGuests > 12)
+            {
+                ModelState.AddModelError("NumberOfGuests", "Number of guests exceeded");
+                return View(updatedReservation);
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(updatedReservation);
+            }
+
+            // Recalculate times
+            var startDateTime = updatedReservation.Date.Date + updatedReservation.Time;
+            var endDateTime = startDateTime.AddHours(2);
+
+            // Validate table capacity
+            var table = _context.Tables.Find(updatedReservation.TableId);
+            if (table == null || updatedReservation.NumberOfGuests > table.Capacity)
+            {
+                ModelState.AddModelError("", "Selected table does not have enough seats.");
+                return View(updatedReservation);
+            }
+
+            // Check overlap with other reservations
+            bool isTaken = _context.Reservations.Any(r =>
+                r.Id != updatedReservation.Id && // exclude current one
+                r.TableId == updatedReservation.TableId &&
+                r.Date == updatedReservation.Date &&
+                (r.StartTime < endDateTime && r.EndTime > startDateTime)
+            );
+
+            if (isTaken)
+            {
+                ModelState.AddModelError("", "That table is already booked at the selected time.");
+                return View(updatedReservation);
+            }
+
+            // Save
+            updatedReservation.StartTime = startDateTime;
+            updatedReservation.EndTime = endDateTime;
+
+            _context.Update(updatedReservation);
+            _context.SaveChanges();
+
+            //Redirect after success
+            return RedirectToAction("Details", new { id = updatedReservation.Id });
+        }
+
+
 
     }
 }
