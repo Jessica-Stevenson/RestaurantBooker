@@ -5,6 +5,7 @@ namespace RestaurantBooker.Models
 {
     public class User : IdentityUser
     {
+
         [Required]
         [MaxLength(50)]
         public string FirstName { get; set; }
@@ -12,6 +13,7 @@ namespace RestaurantBooker.Models
         [Required]
         [MaxLength(50)]
         public string LastName { get; set; }
+
     }
 
 }

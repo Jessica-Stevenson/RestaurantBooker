@@ -1,12 +1,12 @@
 ﻿@model RestaurantBooker.Models.Reservation
-@{
-    ViewData["Title"] = "Reservation";
-}
+
+<h1 class="custom-title me-2 mb-4 text-center">Make a Reservation</h1>
 
 <div class="container py-5" style="background-color: #F8E4E4; border-radius: 12px;">
-    <h2 class="text-center text-primary mb-4">Reserve your table</h2>
 
-    <form asp-action="Create" method="post" class="mx-auto" style="max-width: 600px;">
+    <div class="letter-Front">
+        <form asp-controller="Reservation" asp-action="Create" method="post" class="mx-auto" style="max-width: 600px;">
+
         <div class="mb-3">
             <label asp-for="Name" class="form-label">Name</label>
             <input asp-for="Name" class="form-control" />
@@ -37,11 +37,58 @@
             <span asp-validation-for="Time" class="text-danger"></span>
         </div>
 
-        <div class="mb-3">
-            <label asp-for="NumberOfGuests" class="form-label">Number Of Guests</label>
-            <input asp-for="NumberOfGuests" class="form-control" type="number" min="1" max="20" />
-            <span asp-validation-for="NumberOfGuests" class="text-danger"></span>
-        </div>
+        <label for="guestCount" style="font-weight: 600; font-size: 1rem; margin-bottom: 6px; display: block;">
+            Number Of Guests
+        </label>
+
+        <input type="number"
+               id="guestCount"
+               name="NumberOfGuests"
+               max="12"
+               min="1"
+               required
+               oninput="validateGuestCount(this)"
+               style="width: 240px; padding: 8px 12px; border-radius: 6px; border: 1px solid #ccc; background-color: #fff5f7;" />
+
+        <span id="guestError" style="color: red; font-size: 0.85rem; display: block; margin-top: 4px;"></span>
+
+        <script> // Guest limit check
+            function validateGuestCount(input) {
+              const errorSpan = document.getElementById('guestError');
+              const value = parseInt(input.value);
+
+              if (value > 12) {
+                errorSpan.textContent = "Number of guests exceeded";
+              } else {
+                errorSpan.textContent = "";
+              }
+            }
+        </script>
+
+        <script>
+            async function checkDoubleBooking(tableId, startTime, endTime) {
+              const errorSpan = document.getElementById('guestError'); // You can create a separate span if needed
+              const response = await fetch(`/Reservation/CheckAvailability?tableId=${tableId}&startTime=${startTime}&endTime=${endTime}`);
+              const isAvailable = await response.json();
+
+              if (!isAvailable) {
+                errorSpan.textContent = "This table is already booked at that time.";
+              }
+
+              else {
+                errorSpan.textContent = "";
+              }
+            }
+
+            // Example trigger: run this when user selects a time or table
+            document.getElementById('startTimeInput').addEventListener('change', function () {
+              const tableId = document.getElementById('tableSelect').value;
+              const startTime = this.value;
+              const endTime = calculateEndTime(startTime); // You can define this based on your logic
+              checkDoubleBooking(tableId, startTime, endTime);
+            });
+        </script>
+
 
         <div class="mb-3">
             <label asp-for="SpecialRequests" class="form-label">Special Requests</label>
@@ -49,6 +96,11 @@
             <span asp-validation-for="SpecialRequests" class="text-danger"></span>
         </div>
 
-        <button type="submit" class="btn btn-danger w-100">Book A Table</button>
-    </form>
+
+            <button type="submit" class="btn btn-danger me-10">Book</button>
+
+
+        </form>
+
+    </div>
 </div>

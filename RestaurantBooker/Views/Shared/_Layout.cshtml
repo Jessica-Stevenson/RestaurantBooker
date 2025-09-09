@@ -1,5 +1,7 @@
-﻿<!DOCTYPE html>
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<User> UserManager
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,8 +23,9 @@
 <body>
 
     <header>
-
+  <!--Shenagains-->
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm custom-colour border-bottom box-shadow mb-3" ">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm custom-colour box-shadow mb-3 fixed-top" ">
 
             <div class="container-fluid">
 
@@ -62,13 +65,8 @@
 
 
                         <li class="nav-item">
-
-                            <a class="nav-link" asp-area="" asp-controller="Reservation" asp-action="Create">Reservation</a>
-
+                            <a class="nav-link" asp-area="" asp-controller="Reservation" asp-action="Create">Reservations</a>
                         </li>
-
-
-
                         <li class="nav-item">
 
                             <a class="nav-link" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
@@ -79,68 +77,44 @@
 
                         <ul class="navbar-nav ms-auto">
 
-
-
+                            
+							@* show user info if logged in *@
                             <ul class="navbar-nav ms-auto">
+                                
 
-                                @if (User.Identity.IsAuthenticated)
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="" asp-controller="Reservation" asp-action="Index">View Reservations</a>
+                                </li>
 
-                                {
+                                <li class="nav-item">
+                                    @{
+                                        var currentUser = await UserManager.GetUserAsync(User);
+                                    }
+                                    <a class="nav-link me-3" asp-area="" asp-controller="Profile" asp-action="Index">Hello @currentUser?.FirstName @currentUser?.LastName!</a>
+                                </li>
 
-                                    <li class="nav-item">
+                                <li class="nav-item">
+                                    <form asp-area="Identity" asp-page="/Account/Logout"
+                                          asp-route-returnUrl="@Url.Action("Index", "Home")"
+                                          method="post" class="form-inline">
+                                        <button type="submit" class="btn btn-danger">Logout</button>
+                                    </form>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link me-2" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                                </li>
 
-                                        <span class="nav-link">Hello @User.Identity.Name!</span>
-
-                                    </li>
-
-
-
-                                    <li class="nav-item">
-
-                                        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home")" method="post" class="form-inline">
-
-                                            <button type="submit" class="btn btn-danger">Logout</button>
-
-                                        </form>
-
-                                    </li>
-
-
-
-                                }
-
-                                else
-
-                                {
-
-                                    <li class="nav-item">
-
-                                        <a class="nav-link me-2" asp-area="Identity" asp-page="/Account/Login">Login</a>
-
-                                    </li>
-
-
-
-                                    <li class="nav-item">
-
-                                        <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
-
-                                    </li>
-
-                                }
-
-                            </ul>
-
-
-
-
-
-
-
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                                </li>
+                            }
+                                                                                                        
                         </ul>
-
-
-
                     </ul>
 
                 </div>
@@ -152,16 +126,11 @@
 
 
     </header>
-
-    <div class="container">
-
-        <main role="main" class="pb-3">
-
-            @RenderBody()
-
-        </main>
-
-    </div>
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
 
     <footer class="custom-colour border-top footer">
 

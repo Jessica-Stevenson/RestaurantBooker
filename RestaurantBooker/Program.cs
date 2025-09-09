@@ -4,22 +4,27 @@ using RestaurantBooker.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var connectionString = builder.Configuration.GetConnectionString("UserDbContext")
-    ?? throw new InvalidOperationException("Connection string 'UserDbContext' not found.");
+var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContext")
+    ?? throw new InvalidOperationException("Connection string 'ApplicationDbContext' not found.");
 
-builder.Services.AddDbContext<UserDBContext>(options =>
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// Identity
+//Identity
 builder.Services.AddDefaultIdentity<User>(options =>
     options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<UserDBContext>();
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // MVC + Razor Pages
 builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages(); //
+builder.Services.AddRazorPages(); 
 
 var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var DB = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    DbInitializer.Seed(DB);
+}
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -39,10 +44,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Reservation}/{action=Create}/{id?}");
 
 app.MapRazorPages();
 
