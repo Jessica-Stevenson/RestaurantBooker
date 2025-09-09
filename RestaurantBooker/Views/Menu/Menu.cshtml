@@ -1,0 +1,36 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Menu";
+}
+
+<div class="menu-container">
+    <h1 class="page-title">MENU</h1>
+
+    <div class="menu-categories-grid">
+        <a href="@Url.Action("StartersMains", "Menu")" class="menu-category-link">
+            <div class="menu-category-item">
+                <img src="/images/starters-image.jpg" alt="Starters" class="category-image" />
+                <span class="category-title">Starters</span>
+            </div>
+        </a>
+        <a href="@Url.Action("StartersMains", "Menu")" class="menu-category-link">
+            <div class="menu-category-item">
+                <img src="/images/mains-image.jpg" alt="Mains" class="category-image" />
+                <span class="category-title">Mains</span>
+            </div>
+        </a>
+        <a href="@Url.Action("DessertsBeverages", "Menu")" class="menu-category-link">
+            <div class="menu-category-item">
+                <img src="/images/desserts-image.jpg" alt="Desserts" class="category-image" />
+                <span class="category-title">Desserts</span>
+            </div>
+        </a>
+        <a href="@Url.Action("DessertsBeverages", "Menu")" class="menu-category-link">
+            <div class="menu-category-item">
+                <img src="/images/beverages-image.jpg" alt="Beverages" class="category-image" />
+                <span class="category-title">Beverages</span>
+            </div>
+        </a>
+    </div>
+</div>

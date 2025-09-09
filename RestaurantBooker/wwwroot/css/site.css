@@ -82,6 +82,180 @@ nav {
     color: #f1f1f1;
 }
 
+
+/* ------------- ------------- */
+/* General MENU PAGE Styling */
+body {
+    background-color: #fcebeb; /* Corresponds to the light pink background */
+}
+
+.menu-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.page-title, .menu-section-title {
+    color: #e7878e;
+    font-size: 2.5em;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+/* Main Menu Page Grid */
+.menu-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.menu-category-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.menu-category-item {
+    text-align: center;
+}
+
+.category-image {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+    border-radius: 50%; /* Makes the images circular */
+    border: 5px solid #e7878e;
+}
+
+.category-title {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.5em;
+    color: #e7878e;
+    font-weight: bold;
+}
+
+/* Detailed Menu Pages Grid */
+.menu-items-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    /* Adjust for smaller screens */
+    @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 480px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.menu-item {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background for the text boxes */
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.item-image {
+    width: 100%;
+    max-width: 150px;
+    height: auto;
+    border-radius: 50%; /* Makes the images circular */
+}
+
+.item-name {
+    color: #333;
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+.item-description {
+    color: #555;
+    font-size: 0.9em;
+}
+
+/* --------------- */
+
+/* Custom color for header and footer */
+.custom-colour {
+    background-color: #e7878e;
+}
+
+/* Style for navigation bar links to match design */
+.nav-link {
+    color: white !important; /* Forces the link color to white */
+    font-weight: bold;
+}
+
+/* Style for the 'Restaurant Booker' brand link */
+.navbar-brand {
+    color: white !important;
+}
+
+/* To remove the light-colored border from the header and footer */
+.border-bottom, .border-top {
+    border-color: transparent !important;
+}
+
+/* Match the footer's privacy link color */
+.footer a {
+    color: white !important;
+}
+
+/* ----------- moved from _Layout.cshtml.css in Shared folder --------------*/
+
+/* Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+}
+
+a {
+    color: #0077cc;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
+}
+
 /* ScrollBar */
 
 /* Chrome, Edge, Safari */
